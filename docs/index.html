@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>My Website</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">My Website</h1>
+
+</div>
+
+
+<blockquote>
+<p>Pruebe en lugar de argumentar. - Proverbio japonés</p>
+</blockquote>
+<div id="que-son-git-y-github" class="section level2">
+<h2>¿Qué son Git y GitHub?</h2>
+<p>Git es un programa de línea de comandos que le permite rastrear versiones de cualquier código o documento de texto plano que usted cree. Al igual que la función “Control de cambios” de un procesador de textos, Git realiza un seguimiento de quién hizo cambios particulares, el tiempo y fecha de esos cambios y dónde se realizaron los cambios. Si un archivo crucial se borra por accidente, o si hace un cambio radical a su código y desea intentar descubrir dónde se realizó el cambio, puede usar Git para restaurar el archivo eliminado o encontrar el nuevo error en su programa. Git organiza grupos de archivos que está rastreando en un <strong>repositorio</strong>, que es solo un directorio donde se rastrean todos los cambios en los archivos en ese directorio. Git también puede ayudarlo a colaborar con otros cuando está escribiendo software. Como <a href="https://twitter.com/kwbroman">Karl Broman</a> dice (parafraseando a <a href="https://twitter.com/mtholder">Mark Holder</a>): “Su colaborador más cercano es usted hace seis meses, pero que no responde correos electrónicos”</p>
+<p>GitHub es un sitio web que proporciona repositorios remotos de Git. Un repositorio remoto es solo un repositorio de Git al que puede acceder a través de una conexión a Internet. GitHub le permite crear repositorios remotos públicos de forma gratuita, y cualquiera puede ver su código en estos repositorios públicos. Si quiere mantener su código privado entonces puedes pagar GitHub por repositorios remotos privados.</p>
+<p>Si está trabajando en el código junto con un amigo, GitHub puede ayudarlo a sincronizar los cambios en los archivos de código entre usted y su amigo. También hay un aspecto social y comunitario en GitHub, ya que puede ver a otros programadores desarrollar sus proyectos. GitHub también hace que sea fácil venir en la ayuda de alguien con su proyecto. GitHub ofrece muchas otras características útiles que se discutirán extensamente.</p>
+</div>
+<div id="configurando-git-y-github" class="section level2">
+<h2>Configurando Git y GitHub</h2>
+<p>Antes de configurar Git, vaya a <a href="https://github.com/">GitHub</a> y cree una cuenta gratis. Tome nota de la dirección de correo electrónico que usa y el nombre de usuario que elija.</p>
+<p>Para ver si tiene instalado Git abra su terminal e ingrese lo siguiente:</p>
+<pre><code>git --version</code></pre>
+<p>Si no recibe una respuesta diciéndole la versión de Git que tiene instalada entonces necesita instalar Git. Puede encontrar instrucciones para instalar Git en tu sistema operativo <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here</a>.</p>
+<p>Abra su shell una vez que haya instalado git y ejecute <code>git --version</code> nuevamente para asegúrarse de que la instalación sea exitosa (es posible que deba reiniciar su shell o su computadora). Después de instalar Git, debemos configurar dos variables, pero solo necesitamos hacer esto una vez. La primera variable que necesitamos establecer con Git es su nombre de usuario GitHub, y la segunda variable es el correo electrónico que utilizó para crear su cuenta de GitHub:</p>
+<pre><code>git config --global user.name &quot;myUserName&quot;
+git config --global user.email myName@email.com</code></pre>
+</div>
+<div id="comenzando-con-git" class="section level2">
+<h2>Comenzando con Git</h2>
+<p>Vamos a crear nuestro primer repositorio de Git. Primero tenemos que crear un directorio:</p>
+<pre><code>cd
+mkdir my-first-repo
+cd my-first-repo</code></pre>
+<p>“Repo” en este caso es solo una abreviatura de “repositorio”. Para comenzar a rastrear archivos con Git en un directorio, ingresa <code>git init</code> en la línea de comandos:</p>
+<pre><code>git init</code></pre>
+<pre><code>## Initialized empty Git repository in /Users/Martin/my-first-repo/.git/</code></pre>
+<p>¡Acaba de crear su primer repositorio! Ahora vamos a crear un archivo y a comenzar a rastrearlo</p>
+<pre><code>echo &quot;Welcome to My First Repo&quot; &gt; readme.txt</code></pre>
+<p>Ahora que hemos creado un archivo en este repositorio de Git, usemos <code>git status</code> para ver qué está pasando en este repositorio. Usaremos <code>git status</code> continuamente a lo largo de este gist para obtener información sobre el estado de este repositorio de Git.</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+##
+## Initial commit
+##
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  readme.txt
+##
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
+<p>Como puede ver, <code>readme.txt</code> se muestra como un archivo sin seguimiento. Para hacer que Git sepa que quiere rastrear este archivo, necesitamos usar <code>git add</code> con el nombre de el archivo que queremos rastrear. Comencemos rastreando <code>readme.txt</code>:</p>
+<pre><code>git add readme.txt</code></pre>
+<p>Git ahora sabe rastrear cualquier cambio a <code>readme.txt</code>. Veamos cómo el estado de el repositorio ha cambiado:</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+##
+## Initial commit
+##
+## Changes to be committed:
+##   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+##
+##  new file:   readme.txt
+##</code></pre>
+<p>Git ahora está rastreando <code>readme.txt</code>, o en el lenguaje específico de Git <code>readme.txt</code> está ahora <strong>staged</strong>. Entre los paréntesis en el mensaje de arriba puede ver que <code>git status</code> nos da un consejo sobre cómo unstaged (o dejar de preparar) este archivo, lo cual podríamos hacer con <code>git rm --cached readme.txt</code>. Vamos a dejar de preparar este archivo solo para ver que pasa:</p>
+<pre><code>git rm --cached readme.txt</code></pre>
+<pre><code>## rm &#39;readme.txt&#39;</code></pre>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+##
+## Initial commit
+##
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  readme.txt
+##</code></pre>
+<p>Nuestro repositorio vuelve a la forma en que comenzó con <code>readme.txt</code> como un archivo sin preparar. Comencemos rastreando <code>readme.txt</code> nuevamente para poder pasar a características más importantes de Git.</p>
+<pre><code>git add readme.txt</code></pre>
+<p>Ahora que Git está rastreando <code>readme.txt</code> necesitamos crear un hito para indicar los cambios que hicimos a <code>readme.txt</code>. En este caso, los cambios que hicimos estaban creando el archivo en primer lugar! Este hito se llama <strong>commit</strong> en Git. Un commit registra el contenido de todos los archivos que están preparados. Ahora sólo tenemos <code>readme.txt</code> preparadp, así que vamos a confirmar la creación de este archivo. Al hacer una confirmación en Git, necesitamos escribir un mensaje de confirmación que se especifica después de la etiqueta <code>-m</code>. El mensaje debe describir brevemente qué cambios has hecho desde el último commit.</p>
+<pre><code>git commit -m &quot;added readme.txt&quot;</code></pre>
+<pre><code>## [master (root-commit) 73e53ca] added readme.txt
+##  1 file changed, 1 insertion(+)
+##  create mode 100644 readme.txt</code></pre>
+<p>El mensaje anterior confirma que el commit tuvo éxito y resume los cambios que tuvieron lugar desde el último commit. Como puede ver en el mensaje, solo cambiamos un archivo, y solo cambiamos una línea en ese archivo. Corramos <code>git status</code> nuevamente para ver el estado de nuestro repositorio después de que hayamos hecho el primer commit:</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+## nothing to commit, working tree clean</code></pre>
+<p>¡Todos los cambios a los archivos en este repositorio han sido confirmados! Vamos a agregar algunos archivos más a este repositorio y confirmarlos.</p>
+<pre><code>touch file1.txt
+touch fil2.txt
+ls</code></pre>
+<pre><code>## file1.txt
+## fil2.txt
+## readme.txt</code></pre>
+<p>Mientras estamos en eso, agreguemos una nueva línea de texto a <code>readme.txt</code>:</p>
+<pre><code>echo &quot;Learning Git is going well so far.&quot; &gt;&gt; readme.txt</code></pre>
+<p>Ahora que hemos agregado dos archivos más y hemos realizado cambios en un archivo, vamos a echar un vistazo al estado de este repositorio.</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+## Changes not staged for commit:
+##   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+##   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+##
+##  modified:   readme.txt
+##
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  fil2.txt
+##  file1.txt
+##
+## no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<p>Podemos ver que Git ha detectado que un archivo ha sido modificado y que hay dos archivos en este directorio que no están siendo rastreados. Ahora tenemos que decirle a Git que rastree los cambios a estos archivos. Podríamos decirle a Git que rastree los cambios en cada archivo usando <code>git add</code>, o dado que todos los archivos en este repositorio son <code>.txt</code> archivos podríamos usar un comodín e ingresar<code>git add * .txt</code> en la consola. Sin embargo, si queremos hacer un seguimiento de todos los cambios en todos los archivos en nuestro directorio deberíamos usar el comando <code>git add -A</code>.</p>
+<pre><code>git add -A
+git status</code></pre>
+<pre><code>## On branch master
+## Changes to be committed:
+##   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+##
+##  new file:   fil2.txt
+##  new file:   file1.txt
+##  modified:   readme.txt
+##</code></pre>
+<p>Ahora se están rastreando los cambios a todos los archivos en este repositorio. Finalmente, confirmemos estos cambios:</p>
+<pre><code>git commit -m &quot;added two files&quot;</code></pre>
+<pre><code>## [master 53a1983] added two files
+##  3 files changed, 1 insertion(+)
+##  create mode 100644 fil2.txt
+##  create mode 100644 file1.txt</code></pre>
+<p>¡Demonios!, ahora mirando este resumen de confirmación me doy cuenta de que tengo un error tipográfico en uno de los nombres de mis archivos! Afortunadamente, podemos deshacer el commit más reciente con el comando <code>git reset --soft HEAD~</code>:</p>
+<pre><code>git reset --soft HEAD~
+git status</code></pre>
+<pre><code>## On branch master
+## Changes to be committed:
+##   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+##
+##  new file:   fil2.txt
+##  new file:   file1.txt
+##  modified:   readme.txt
+##</code></pre>
+<p>Este repositorio ahora se encuentra exactamente en el mismo estado en el que estaba antes de que hiciéramos el commit. Ahora podemos cambiar el nombre de <code>fil2.txt</code> a <code>file2.txt</code>, entonces veamos el estado del repositorio de nuevo.</p>
+<pre><code>mv fil2.txt file2.txt
+git status</code></pre>
+<pre><code>## On branch master
+## Changes to be committed:
+##   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+##
+##  new file:   fil2.txt
+##  new file:   file1.txt
+##  modified:   readme.txt
+##
+## Changes not staged for commit:
+##   (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)
+##   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+##
+##  deleted:    fil2.txt
+##
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  file2.txt
+##</code></pre>
+<p>Le dijimos previamente a Git que rastreara <code>fil2.txt</code>, y podemos ver que Git reconoce que el archivo ha sido eliminado. Podemos poner a Git al tanto de qué archivos debería estar siguiendo con <code>git add -A</code>:</p>
+<pre><code>git add -A
+git status</code></pre>
+<pre><code>## On branch master
+## Changes to be committed:
+##   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+##
+##  new file:   file1.txt
+##  new file:   file2.txt
+##  modified:   readme.txt
+##</code></pre>
+<p>¡Finalmente tenemos los nombres de los archivos correctos! Ahora hagamos el commit correcto:</p>
+<pre><code>git commit -m &quot;added two files&quot;</code></pre>
+<pre><code>## [master 12bb9f5] added two files
+##  3 files changed, 1 insertion(+)
+##  create mode 100644 file1.txt
+##  create mode 100644 file2.txt</code></pre>
+<p>Se ve mucho mejor.</p>
+<div id="resumen" class="section level3">
+<h3>Resumen</h3>
+<ul>
+<li>Git sigue los cambios a los archivos de texto plano (archivos de código y documentos de texto).</li>
+<li>Un directorio donde los cambios son seguidos por Git se llama repositorio de Git.</li>
+<li>Cambie su directorio de trabajo, luego ejecute <code>git init</code> para iniciar un repositorio.</li>
+<li>Puede rastrear los cambios a un archivo usando <code>git add [nombres de archivos]</code>.</li>
+<li>Puede crear un hito sobre el estado de sus archivos utilizando el mensaje <code>git commit -m 'mensaje sobre los cambios desde la última confirmación&quot;</code>.</li>
+<li>Para examinar el estado de los archivos en su repositorio use <code>git status</code>.</li>
+</ul>
+</div>
+<div id="ejercicios" class="section level3">
+<h3>Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Inicie un repositorio en un nuevo directorio.</li>
+<li>Cree un nuevo archivo en su nuevo repositorio de Git. Asegúrese de que Git está rastreando el archivo y luego cree una nueva confirmación.</li>
+<li>Realice cambios en el archivo y luego confirme estos cambios.</li>
+<li>Agregue dos archivos nuevos a su repositorio, pero solo confirme uno de ellos. ¿Cuál es el estado de su repositorio después de la confirmación?</li>
+<li>Deshaga la última confirmación, agregue el archivo sin seguimiento y vuelva a realizar la confirmación.</li>
+</ol>
+</div>
+</div>
+<div id="caracteristicas-importantes-de-git" class="section level2">
+<h2>Características importantes de Git</h2>
+<div id="ayuda-registros-y-diferencias" class="section level3">
+<h3>Ayuda, registros y diferencias</h3>
+<p>Los comandos de Git tienen sus propios manuales ‘man’. Puede acceder a ellos con <code>git help [nombre del comando]</code>. Por ejemplo, aquí está el comienzo de la página de ayuda para <code>git status</code>:</p>
+<pre><code>git help status</code></pre>
+<pre><code>GIT-STATUS(1)                                Git Manual                               GIT-STATUS(1)
+
+NAME
+       git-status - Show the working tree status
+
+SYNOPSIS
+       git status [&lt;options&gt;...] [--] [&lt;pathspec&gt;...]
+
+DESCRIPTION
+       Displays paths that have differences between the index file and the current HEAD commit,
+       paths that have differences between the working tree and the index file, and paths in the
+       working tree that are not tracked by Git (and are not ignored by gitignore(5)). The first
+       are what you would commit by running git commit; the second and third are what you could
+       commit by running git add before running git commit.</code></pre>
+<p>Al igual que cualquier otra página de ayuda que use <code>less</code>, puede volver al prompt con la tecla <code>Q</code>.</p>
+<p>Si desea ver una lista de sus commits de Git, ingrese <code>git log</code> en la consola:</p>
+<pre><code>git log</code></pre>
+<pre><code>## commit 12bb9f53b10c9b720dac8441e8624370e4e071b6
+## Author: seankross &lt;sean@seankross.com&gt;
+## Date:   Fri Apr 21 15:23:59 2017 -0400
+##
+##     added two files
+##
+## commit 73e53cae75301ce9b2802107b1956447241bb17a
+## Author: seankross &lt;sean@seankross.com&gt;
+## Date:   Thu Apr 20 14:15:26 2017 -0400
+##
+##     added readme.txt</code></pre>
+<p>Si ha realizado muchos commits en un repositorio, es posible que deba presionar la tecla <code>Q</code> para volver al prompt. Cada commit tiene su hora, fecha y mensaje de confirmación grabado, junto con un hash SHA-1 que identifica de manera única la confirmación.</p>
+<p>Git también puede ayudar a mostrar las diferencias entre los cambios no registrados en sus archivos comparado con el último commit. Agreguemos una nueva línea de texto a <code>readme.txt</code>:</p>
+<pre><code>echo &quot;The third line.&quot; &gt;&gt; readme.txt
+git diff readme.txt</code></pre>
+<pre><code>## diff --git a/readme.txt b/readme.txt
+## index b965f6a..a3db358 100644
+## --- a/readme.txt
+## +++ b/readme.txt
+## @@ -1,2 +1,3 @@
+##  Welcome to My First Repo
+##  Learning Git is going well so far.
+## +I added a line.</code></pre>
+<p>Como puede ver, aparece un signo más al lado de la línea agregada. Ahora vamos a abrir este archivo en un editor de texto para que podamos eliminar la segunda línea.</p>
+<pre><code>nano readme.txt
+# Borrar la segunda línea
+git diff readme.txt</code></pre>
+<pre><code>## diff --git a/readme.txt b/readme.txt
+## index b965f6a..e173fdf 100644
+## --- a/readme.txt
+## +++ b/readme.txt
+## @@ -1,2 +1,2 @@
+##  Welcome to My First Repo
+## -Learning Git is going well so far.
+## +I added a line.</code></pre>
+<p>Aparece un signo menos al lado de la línea que eliminamos. Echemos un vistazo a la estado de nuestro directorio en este punto.</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+## Changes not staged for commit:
+##   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+##   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+##
+##  modified:   readme.txt
+##
+## no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<p>Si lee detenidamente los resultados de <code>git status</code>, puede ver que podemos tomar este repositorio en una de dos direcciones en este punto. Podemos o bien hacer <code>git add</code> a los archivos que le hemos realizado cambios para rastrear esos cambios, o podemos usar <code>git checkout</code> para eliminar todos los cambios que hemos realizado en un archivo para restaurar su contenido a lo que estaba presente en el último commit. Vamos a eliminar nuestros cambios para ver cómo funciona esto.</p>
+<pre><code>cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## I added a line.</code></pre>
+<pre><code>git checkout readme.txt
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.</code></pre>
+<p>Como puede ver, los cambios que le hicimos a <code>readme.txt</code> han sido deshechos.</p>
+</div>
+<div id="ignorar-archivos" class="section level3">
+<h3>Ignorar archivos</h3>
+<p>A veces podemos tener archivos que nunca deseamos que Git rastree, por ejemplo archivos binarios que se generan como subproductos del código en ejecución (archivos PDF o imágenes), o secretos como contraseñas o claves API. Un archivo en su repositorio de Git llamado <code>.gitignore</code> puede mostrar los nombres de los archivos y subcarpetas, o simplemente expresiones regulares (lo que se puede usar con <code>ls</code>) para especificar archivos que nunca deben ser rastreados. Cada línea de un archivo <code>.gitignore</code> debe especificar un archivo o un grupo de archivos que Git no debe rastrear. Hagamos un archivo <code>.gitignore</code> para asegurarnos de que nunca rastreamos los archivos de imagen en este repositorio:</p>
+<pre><code>touch toby.jpg
+git status</code></pre>
+<pre><code>## On branch master
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  toby.jpg
+##
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
+<p>Ahora que hemos agregado una imagen a nuestro repositorio, agreguemos un archivo <code>.gitignore</code> para asegurarnos de que Git no rastree este tipo de archivos.</p>
+<pre><code>echo &quot;*.jpg&quot; &gt; .gitignore
+git status</code></pre>
+<pre><code>## On branch master
+## Untracked files:
+##   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+##
+##  .gitignore
+##
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
+<p>Ahora podemos ver que Git ha detectado el nuevo archivo <code>.gitignore</code>, pero no ve <code>toby.jpg</code>. Vamos a agregar y confirmar nuestro archivo <code>.gitignore</code>:</p>
+<pre><code>git add -A
+git commit -m &quot;added gitignore&quot;</code></pre>
+<pre><code>## [master adef548] added gitignore
+##  1 file changed, 1 insertion(+)
+##  create mode 100644 .gitignore</code></pre>
+<p>Ahora si agregamos otro archivo <code>.jpg</code>, Git no verá el archivo:</p>
+<pre><code>touch bernie.jpg
+git status</code></pre>
+<pre><code>## On branch master
+## nothing to commit, working tree clean</code></pre>
+<pre><code>ls</code></pre>
+<pre><code>## bernie.jpg
+## toby.jpg
+## file1.txt
+## file2.txt
+## readme.txt</code></pre>
+</div>
+<div id="resumen-1" class="section level3">
+<h3>Resumen</h3>
+<ul>
+<li><code>git help</code> le permite leer las páginas <code>man</code> para comandos específicos de Git.</li>
+<li><code>git log</code> le mostrará su historial de commits.</li>
+<li><code>git diff</code> muestra qué ha cambiado entre el último commit y los cambios sin seguimiento actuales.</li>
+<li>Puede especificar un archivo <code>.gitignore</code> para decirle a Git que no rastree ciertos archivos.</li>
+</ul>
+</div>
+<div id="ejercicios-1" class="section level3">
+<h3>Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Mire las páginas de ayuda para <code>git log</code> y <code>git diff</code>.</li>
+<li>Agregue al <code>.gitignore</code> que ya comenzó a incluir, un nombre de archivo específico, luego agregue ese archivo a su repositorio.</li>
+<li>Cree un archivo que contenga el registro de Git para este repositorio. Use <code>grep</code> para ver en qué día de la semana ocurrieron la mayoría de las confirmaciones.</li>
+</ol>
+</div>
+</div>
+<div id="branching" class="section level2">
+<h2>Branching</h2>
+<p>La ramificación es una de las características más poderosas que ofrece Git. Crear diferentes branches de Git le permite trabajar en una característica particular o conjunto de archivos independientemente de otras “copias” de un repositorio. De esa manera usted y un amigo puede trabajar en diferentes partes del mismo archivo en diferentes ramas, y luego Git puede ayudarle a fusionar elegantemente sus ramas y cambios juntos.</p>
+<p>Puede listar todas las ramas disponibles con el comando <code>git branch</code>:</p>
+<pre><code>git branch</code></pre>
+<pre><code>## * master</code></pre>
+<p>La estrella (<code>*</code>) indica en qué rama se encuentra actualmente. La rama predeterminada que se crea siempre se llama <em>master</em>. Por lo general, las personas usan esta rama como la versión de trabajo del software que están escribiendo, mientras desarrollan características nuevas y potencialmente inestables en otras ramas.</p>
+<p>Para agregar una rama también usaremos el comando <code>git branch</code>, seguido del nombre de la rama que queremos crear:</p>
+<pre><code>git branch my-new-feature</code></pre>
+<p>Ahora ingresemos <code>git branch</code> nuevamente para confirmar que hemos creado la rama:</p>
+<pre><code>git branch</code></pre>
+<pre><code>## * master
+## my-new-feature</code></pre>
+<p>Podemos hacer de <code>my-new-feature</code> la rama actual usando <code>git checkout</code> con el nombre del branch:</p>
+<pre><code>git checkout my-new-feature</code></pre>
+<pre><code>## Switched to branch &#39;my-new-feature&#39;</code></pre>
+<pre><code>git branch</code></pre>
+<pre><code>##   master
+## * my-new-feature</code></pre>
+<p>Si observamos el <code>git status</code> también podemos ver que nos dirá en qué rama estamos:</p>
+<pre><code>git status</code></pre>
+<pre><code>On branch my-new-feature
+nothing to commit, working tree clean</code></pre>
+<p>Podemos volver a la rama <code>master</code> usando <code>git checkout</code>:</p>
+<pre><code>git checkout master</code></pre>
+<pre><code>## Switched to branch &#39;master&#39;</code></pre>
+<pre><code>git branch</code></pre>
+<pre><code>## * master
+##   my-new-feature</code></pre>
+<p>Ahora podemos eliminar una rama usando la etiqueta <code>-d</code> con <code>git branch</code> y el nombre de la rama que queremos eliminar:</p>
+<pre><code>git branch -d my-new-feature</code></pre>
+<pre><code>## Deleted branch my-new-feature (was adef548).</code></pre>
+<pre><code>git branch</code></pre>
+<pre><code>## * master</code></pre>
+<p>Creemos una nueva rama para agregar una sección al <code>readme.txt</code> en nuestra repositorio. Podemos crear una nueva rama y cambiar a esa rama al mismo tiempo usando el comando <code>git checkout -b</code> y el nombre de la nueva rama que queremos crear:</p>
+<pre><code>git checkout -b update-readme</code></pre>
+<pre><code>## Switched to a new branch &#39;update-readme&#39;</code></pre>
+<p>Ahora que hemos creado y cambiado a una nueva rama, hagamos algunos cambios en un archivo. Como podríamos estar esperando ahora, agregaremos una nueva línea para <code>readme.txt</code>:</p>
+<pre><code>echo &quot;I added this line in the update-readme branch.&quot; &gt;&gt; readme.txt
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.</code></pre>
+<p>Ahora que hemos agregado una nueva línea, confirmemos estos cambios:</p>
+<pre><code>git add -A
+git commit -m &quot;added a third line to readme.txt&quot;</code></pre>
+<pre><code>## [update-readme 6e378a9] added a third line to readme.txt
+##  1 file changed, 1 insertion(+)</code></pre>
+<p>Ahora que hemos hecho una confirmación en la rama <code>update-readme</code>, volvamos a la rama <code>master</code>, y luego echemos un vistazo a <code>readme.txt</code>:</p>
+<pre><code>git checkout master</code></pre>
+<pre><code>## Switched to branch &#39;master&#39;</code></pre>
+<p>Ahora que estamos en la rama <code>master</code>, echemos un vistazo rápidamente a <code>readme.txt</code>:</p>
+<pre><code>cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.</code></pre>
+<p>¡La tercera línea que agregamos se ha ido! No se preocupe, la línea que agregamos no se fue para siempre. Hemos confirmado el cambio en este archivo mientras estábamos en la rama <code>update-readme</code>, por lo que el archivo actualizado está en esa rama. Vamos a volver a esa rama solo para asegurarnos:</p>
+<pre><code>git checkout update-readme
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.</code></pre>
+<p>¡Y la tercera línea está de vuelta! Vamos a agregar y confirmar otra línea más mientras estamos en esta rama:</p>
+<pre><code>echo &quot;It&#39;s sunny outside today.&quot; &gt;&gt; readme.txt
+git add -A
+git commit -m &quot;added weather info&quot;</code></pre>
+<pre><code>## [update-readme d7946e9] added weather info
+##  1 file changed, 1 insertion(+)</code></pre>
+<p>Este es un pequeño ejemplo de cómo usar la ramificación de Git, pero se puede ver cómo puede realizar ediciones incrementales en texto sin formato (generalmente archivos de código) sin que tengan efecto en la rama <code>master</code> (la copia probada y funcional de su software) y sin afectar otras ramas. Puede imaginar cómo este sistema podría usarse para que varias personas trabajen en la misma base de código al mismo tiempo, o cómo podría desarrollar y probar múltiples funciones en un software sin que ellos interfieran entre sí. Ahora que hemos hecho un par de cambios en <code>readme.txt</code>, combinemos esos cambios con lo que tenemos en rama <code>master</code>. Esto es posible gracias a un <strong>merge</strong> de Git. <code>merge</code> le permite combinar elegantemente los cambios que se han realizado entre dos ramas. Vamos a fusionar los cambios que hicimos en la rama <code>update-readme</code> con la rama<code>master</code>. Git incorpora otras ramas en la rama actual de forma predeterminada. Cuando se fusiona, la rama actual también se denomina rama <strong>base</strong>. Cambiemos a la rama <code>master</code> para que podamos combinar los cambios de la rama <code>update-readme</code>:</p>
+<pre><code>git checkout master</code></pre>
+<pre><code>## Switched to branch &#39;master&#39;</code></pre>
+<p>Para combinar los cambios desde otra rama, necesitamos usar <code>git merge</code> y nombre de la rama:</p>
+<pre><code>git merge update-readme</code></pre>
+<pre><code>## Updating adef548..d7946e9
+## Fast-forward
+##  readme.txt | 2 ++
+##  1 file changed, 2 insertions(+)</code></pre>
+<pre><code>cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.
+## It&#39;s sunny outside today.</code></pre>
+<p>¡Parece que fusionó su primera rama en Git! La ramificación es parte de lo que hace que Git sea tan poderoso ya que permite desarrollos paralelos en el mismo código base. Pero ¿y si hay dos commits en dos ramas separadas que hacen diferentes ediciones a la misma línea de texto? Cuando esto ocurre, se llama <strong>conflict</strong>. Vamos a crear un conflicto para que podamos aprender cómo se pueden resolver.</p>
+<p>Primero cambiaremos a la rama <code>update-readme</code>. Use <code>nano</code> para editar la última línea de <code>readme.txt</code>, luego confirme sus cambios:</p>
+<pre><code>git checkout update-readme
+nano readme.txt
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.
+## It&#39;s cloudy outside today.</code></pre>
+<p>Observe que cambiamos “summy” a “cloudy” en la última línea.</p>
+<pre><code>git add -A
+git commit -m &quot;changed sunny to cloudy&quot;</code></pre>
+<p>Ahora que nuestros cambios están confirmados en la rama <code>update-readme</code>, cambiemos a <code>master</code>:</p>
+<pre><code>git checkout master</code></pre>
+<p>Cambiemos la misma línea de código usando <code>nano</code>:</p>
+<pre><code>nano readme.txt
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.
+## It&#39;s windy outside today.</code></pre>
+<p>Ahora confirmemos estos cambios:</p>
+<pre><code>git add -A
+git commit -m &quot;changed sunny to windy&quot;</code></pre>
+<p>Ahora hemos creado dos commits que entran en conflicto directamente entre sí. Sobre el branch <code>update-readme</code>, la última línea dice <code>It's cloudy outside today</code>, mientras en la rama <code>master</code>, la última línea dice <code>It's windy outside today</code>. Vamos a mirar qué sucede cuando tratamos de combinar <code>update-readme</code> en<code>master</code>.</p>
+<pre><code>git merge update-readme</code></pre>
+<pre><code>## Auto-merging readme.txt
+## CONFLICT (content): Merge conflict in readme.txt
+## Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+<p>¡Wow, hay un conflicto! Vamos a verificar el estado del repositorio en este momento:</p>
+<pre><code>git status</code></pre>
+<pre><code>## On branch master
+## You have unmerged paths.
+##   (fix conflicts and run &quot;git commit&quot;)
+##   (use &quot;git merge --abort&quot; to abort the merge)
+##
+## Unmerged paths:
+##   (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+##
+##  both modified:   readme.txt
+##
+## no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<p>Si se está acostumbrando a leer el resultado del <code>git status</code>, puede ver que a menudo ofrece sugerencias sobre qué pasos debe seguir. Git está indicando que ambas versiones de readme.txt han modificado el mismo texto. Vamos a echar un vistazo a <code>readme.txt</code> para ver qué está pasando allí:</p>
+<pre><code>cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.
+## &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+## It&#39;s windy outside today.
+## =======
+## It&#39;s cloudy outside today.
+## &gt;&gt;&gt;&gt;&gt;&gt;&gt; update-readme</code></pre>
+<p>Las primeras tres líneas de este archivo se ven normales, ¡entonces las cosas se ponen interesantes! La línea entre <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> y <code>=======</code>muestra la versión de la línea conflictiva en la rama actual. En la terminología de Git el <code>HEAD</code> representa la confirmación más reciente en la rama en que está actualmente (que es <code>master</code> en este caso). La línea entre <code>=======</code> y <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; update-readme</code> muestra la versión de la línea en la rama <code>update-readme</code>. Para resolver este conflicto, todo lo que tenemos que hacer es abrir <code>readme.txt</code> con <code>nano</code> para poder eliminar las líneas de las que queremos deshacernos. En este caso, vamos a mantener la versión “cloudy”.</p>
+<pre><code>nano readme.txt
+cat readme.txt</code></pre>
+<pre><code>## Welcome to My First Repo
+## Learning Git is going well so far.
+## I added this line in the update-readme branch.
+## It&#39;s cloudy outside today.</code></pre>
+<p>Ahora podemos comprometer la resolución de este conflicto.</p>
+<pre><code>git add -A
+git commit -m &quot;resolved conflict&quot;</code></pre>
+<p>¡Ahora está familiarizado con estos conceptos básicos de Git! Si quiers entrar más en profundidad con el estudio de Git le recomiendo el libro de código abierto y gratuito <a href="https://git-scm.com/book/">Pro Git</a>.</p>
+<div id="resumen-2" class="section level3">
+<h3>Resumen</h3>
+<ul>
+<li>La ramificación de Git le permite a usted y a otros trabajar juntos en la misma base de códigos.</li>
+<li>Puede crear una rama con el comando <code>git branch [nombre de la rama]</code>.</li>
+<li>Para cambiar a otra rama use <code>git checkout [nombre de la rama]</code>.</li>
+<li>Puede combinar una rama con su rama actual usando <code>git merge</code>.</li>
+</ul>
+</div>
+<div id="ejercicios-2" class="section level3">
+<h3>Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Cree una nueva rama.</li>
+<li>Cambie a esa rama y agregue commits a ella. Cambie a una rama más antigua y luego fusione la nueva rama en su rama actual.</li>
+<li>Cree y resuelva a propósito un conflicto de fusión.</li>
+</ol>
+</div>
+</div>
+<div id="github" class="section level2">
+<h2>GitHub</h2>
+<p>Ahora que conoce los conceptos básicos del uso de Git, hablemos sobre cómo puede compartir su trabajo y comience a colaborar en línea usando GitHub. Para comenzar, vaya a <a href="https://github.com/">GitHub</a> e inicie sesión con las credenciales que configuramos al comienzo del capítulo. Después de iniciar sesión debería ver un signo más cerca de la esquina superior derecha de su navegador web. Haga clic en el signo más y un pequeño menú debe aparecer, luego haga clic en “New repository”.</p>
+<p>En el cuadro de texto debajo de <strong>Repository Name</strong>, escriba <code>my-first-repo</code> y luego haga clic en el botón verde <strong>Create repository</strong>.</p>
+<p>GitHub ofrece algunas sugerencias sobre qué hacer con nuestro nuevo repositorio remoto. Ya hemos estado usando un repositorio local de Git, y lo que GitHub proporciona es un repositorio <strong>remoto</strong> de Git. Un repositorio remoto de Git es solo un repositorio de Git almacenado en una computadora que siempre está encendida y conectada a internet, por lo que puede actuar como un punto central donde podemos compartir y sincronizar nuestros cambios a los archivos con nuestros amigos y colegas. Podemos ver a qué repositorios remotos está conectado nuestro repositorio local con el comando <code>git remote</code> mientras tenemos nuestro directorio de trabajo establecido en <code>my-first-repo</code>:</p>
+<pre><code>git remote</code></pre>
+<p>No se imprime nada en la consola ya que aún no ha configurado ningún control remoto aún. Ahora agreguemos su nuevo repositorio de GitHub como un control remoto en su repositorio local:</p>
+<pre><code>git remote add origin https://github.com/seankross/my-first-repo.git</code></pre>
+<p>En el comando de arriba <code>git remote add</code> agregue un nuevo control remoto a su repositorio local, <code>origin</code> es el nombre que asignamos a este repositorio remoto, y <code>https://github.com/mamaciasq/my-first-repo.git</code> es la URL del repositorio remoto. Debería, por supuesto, sustituir <code>mamaciasq</code> por su nombre de usuario de GitHub para que se corresponda con su URL de repositorio remoto. Más adelante explicaremos por qué “origen” es el nombre que elegimos para este control remoto. Vamos a ejecutar <code>git remote</code> nuevamente para confirmar que agregamos el control remoto<code>origin</code> exitosamente:</p>
+<pre><code>git remote</code></pre>
+<pre><code>## origin</code></pre>
+<p>Ahora que hemos agregado nuestro control remoto GitHub, realicemos nuestra primer subida <strong>push</strong> de Git. Un Git push actualiza un repositorio remoto con todos los commits que hemos realizado en nuestro repositorio local de Git. Esta primer subida que hace al configurar un control remoto en GitHub con un repositorio local es un poco diferente de las futuras subidas de Git. Tendremos que usar la bandera <code>-u</code> para establecer <code>origen</code> como el predeterminado repositorio así que no tendremos que proporcionar su nombre cada vez que queramos interactuar con eso. Ingrese el siguiente comando modificado para que esté usando su nombre de usuario de GitHub:</p>
+<pre><code>git push -u origin master</code></pre>
+<pre><code>## Counting objects: 23, done.
+## Delta compression using up to 4 threads.
+## Compressing objects: 100% (19/19), done.
+## Writing objects: 100% (23/23), 1.88 KiB | 0 bytes/s, done.
+## Total 23 (delta 9), reused 0 (delta 0)
+## remote: Resolving deltas: 100% (9/9), done.
+## To https://github.com/seankross/my-first-repo.git
+##  * [new branch]      master -&gt; master
+## Branch master set up to track remote branch master from origin.</code></pre>
+<p>El comando anterior subió todas nuestras confirmaciones al repositorio remoto en GitHub, y configuró la rama <code>master</code> del repositorio remoto <code>origin</code> como el repositorio remoto predeterminado.</p>
+<p>Una buena característica de GitHub es que los archivos README se representan en la página del repositorio para que pueda escribir documentos que explican el contenido de su repositorio. Vamos a ser más creativos con estos documentos Readme aprendiendo un pequeño lenguaje llamado Markdown.</p>
+<div id="markdown" class="section level3">
+<h3>Markdown</h3>
+<p>Markdown es un lenguaje de marcado. Los lenguajes de marcado son conjuntos de reglas para agregar características decorativas para enviar mensajes de texto. El lenguaje de marcado más popular es HTML, pero también podría haber oído hablar de XML y LaTeX. Markdown es un poderoso lenguaje de marcado porque es pequeño, intuitivo y legible cuando está escrito como texto sin formato. GitHub transforma los archivos de Markdown (que terminan en la extensión de archivo <code>.md</code>) en simples páginas web HTML en su repositorio. Si hay un archivo llamado <code>README.md</code> en cualquier carpeta en su repositorio, ese archivo se procesa en HTML y se muestra en GitHub. Vamos a crear un archivo <code>README.md</code> para nuestro repositorio. Primero destruiremos el archivo Readme de texto sin formato que ya tenemos:</p>
+<pre><code>rm readme.txt</code></pre>
+<p>Hemos incluido un archivo de Markdown a continuación que intenta explicar algunas caracteristicas de Markdown. Copie el texto sin formato, a continuación, cree un nuevo archivo llamado <code>README.md</code> con <code>nano</code>, pegue el texto y luego guarde el archivo.</p>
+<pre><code># This is a large heading
+
+## This is a smaller heading
+
+And as **imagination** bodies forth,
+The forms of things *unknown*, the poet’s pen,
+Turns them to shapes and gives to airy nothing,
+A local *habitation* and a **name**.
+
+- This is
+- an unordered
+- list
+
+1. This is
+2. an ordered
+3. list
+
+Here is `some code` in the middle of a sentence.
+
+```
+This is
+a block
+of code
+```
+
+Here is how you make [a link](https://www.wikipedia.org/).
+
+![This is an image.](https://github.com/yihui/xaringan/releases/download/v0.0.2/karl-moustache.jpg)</code></pre>
+<pre><code>nano README.md</code></pre>
+<p>Ahora agreguemos nuestros cambios, realicemos una confirmación e impulsemos esos cambios en nuestro repositorio remoto:</p>
+<pre><code>git add -A
+git commit -m &quot;added README.md&quot;
+git push</code></pre>
+<pre><code>## Counting objects: 3, done.
+## Delta compression using up to 4 threads.
+## Compressing objects: 100% (3/3), done.
+## Writing objects: 100% (3/3), 659 bytes | 0 bytes/s, done.
+## Total 3 (delta 0), reused 0 (delta 0)
+## To https://github.com/seankross/my-first-repo.git
+##    ca04f67..2169912  master -&gt; master</code></pre>
+<p>Como ya configuramos un repositorio remoto predeterminado la primera vez que subimos archivos, podemos ahora simplemente ingresar <code>git push</code> para enviar nuestras últimas confirmaciones a la rama <code>master</code> en el remoto ‘origin’.</p>
+<p>¡Tenemos un archivo readme mucho más complejo! Observe cómo el texto simple que nosotros escribimos se ha procesado de acuerdo con algunas reglas:</p>
+<ul>
+<li>Los signos de número (<code>#</code>, <code>##</code>) crean encabezados.</li>
+<li>Una palabra rodeada de asteriscos únicos (<code>*palabra*</code>) hace que la palabra esté <em>en cursiva</em>.</li>
+<li>Una palabra rodeada de dos asteriscos (<code>**palabra**</code>) hace que la palabra <strong>sea negrita</strong>.</li>
+<li>Puede crear listas con guiones (<code>-</code>) o números (<code>1., 2., 3.</code>).</li>
+<li>El código se puede colocar en el medio de una línea con solo comillas simples (<code>`codigo`</code>).</li>
+<li>Se puede crear un bloque de código colocando el código entre un conjunto de triples comillas simples (<code>```</code>).</li>
+<li>Puede insertar un enlace con corchetes y paréntesis (<code>[Enlace de texto aquí](http://jhu.edu)</code>).</li>
+<li>Puede usar una imagen con un signo de exclamación y un enlace a una imagen (<code>![Texto alternativo aquí](http://jhu.edu/jeff.jpg)</code>)</li>
+</ul>
+<p>Se sugiere que se tome unos minutos para jugar con la sintaxis <a href="https://jbt.github.io/markdown-editor/#TVFLbtwwDN3rFCxm0xgTOU133WXXA2QXFDDHYizWEmlIctzZ9Rq9Xk9SetqZFNCCIt97/LwDPEeuYA8hYZkIImFgmZw7HP6r1YwpUXmvPkkArNB1nHFiwcYqXQcnDUwVXrW0eHTPkfYwV9BXaNGIxlhlFt2kO1qGYFFqv3/+qrCQGGEtUvd8hqZQIy4mhtZq4jeLLIdcziB6ETu6J0g6YoIu4onb3yEueLTJBDN1nXfu/rqIRSiwipZAhYJ9E9fm3Cd/Qzz6HXIFfPb/EF/tu19iqJoJRg00AMtlg8whJNo3tDORNJKRrOkwDO4qinCyOWdnmJ16qd0ko25w1hUyzgQvZgPL/O1jbG2pX/p+2za/8cwLBUavZervTPzDy80agd0B8u+UiVtcT37U3J85rtz/wGLXQukLJcJKtQ9mQFIM/duDf/CP/Ywl3Wdda8Mxkv++THd/AA==">de este editor de Markdown en línea</a>. Para más información sobre Markdown, vea la ayuda de GitHub <a href="https://guides.github.com/features/mastering-markdown/"><em>Mastering Markdown</em></a> guía.</p>
+</div>
+<div id="pull-requests" class="section level3">
+<h3>Pull Requests</h3>
+<p>Las siguientes dos características de GitHub que vamos a discutir: <strong>pull request</strong> y <strong>forking</strong> - son lo que hace que GitHub sea tan genial. Un pull request le permite comparar de forma interactiva dos ramas diferentes antes de fusionarlas para que pueda ya sea continuar con la fusión o proporcionar comentarios a quien abrió el pull request. Esencialmente, un pull request permite que una persona pregunte a otra persona si están dispuestos a incorporar cambios en una rama en otra rama. Esta transacción puede involucrarlo a usted y a un colaborador, usted y un extraño, o puede abrir un pull request en su propio repositorio como método de mantenerse organizado.</p>
+<p>Como no puedo garantizarle que tenga un colaborador, le mostraré cómo abrir un pull request en su propio repositorio. Primero en su repositorio local <code>my-first-repo</code> cambiemos a la rama <code>update-readme</code>.</p>
+<pre><code>git checkout update-readme</code></pre>
+<pre><code>## Switched to branch &#39;update-readme&#39;</code></pre>
+<p>Echemos un vistazo a lo que está actualmente en esta rama:</p>
+<pre><code>ls</code></pre>
+<pre><code>## bernie.jpg
+## toby.jpg
+## file1.txt
+## file2.txt
+## readme.txt</code></pre>
+<p>Parece que no hemos actualizado esta rama para estar al día con la rama <code>master</code>. Podemos hacer esto fácilmente al fusionarnos en la rama <code>master</code>.</p>
+<pre><code>git merge master</code></pre>
+<pre><code>## Updating 5aa94fa..2169912
+## Fast-forward
+##  README.md  | 28 ++++++++++++++++++++++++++++
+##  readme.txt |  4 ----
+##  2 files changed, 28 insertions(+), 4 deletions(-)
+##  create mode 100644 README.md
+##  delete mode 100644 readme.txt</code></pre>
+<p>Ahora las ramas <code>master</code> y <code>update-readme</code> son idénticas. Vamos a limpiar este directorio para que pueda hacer un pequeño proyecto de Markdown personalizado. primero borremos todos los archivos en este directorio que realmente no necesitamos, es decir todo excepto <code>README.md</code>.</p>
+<pre><code>rm *.txt
+rm *.jpg
+ls</code></pre>
+<pre><code>## README.md</code></pre>
+<p>Ahora que hemos limpiado nuestro repositorio, abrimos <code>README.md</code> con <code>nano</code>. Borre todo lo que está escrito allí y escriba algunas líneas sobre usted mismo. En el bloque de texto a continuación, puede ver lo que se ha escrito en <code>README.md</code>.</p>
+<pre><code># Sean Kross
+
+### Geography
+
+I live in the city of Baltimore, in the state of Maryland, in the United States
+of America.
+
+### Reading
+
+Three of my favorite books are:
+
+- *Mindstorms* by Seymour Papert
+- *Welcome to the Monkey House* by Kurt Vonnegut
+- *Persepolis* by Marjane Satrapi
+
+### Food
+
+Last night I dreamt about eating in these restaurants:
+
+1. Linger in Denver.
+2. Azura in Jerusalem.
+3. Gemma in New York City.
+
+### Contact
+
+The best way to get in touch with me is [on Twitter](https://twitter.com/seankross).</code></pre>
+<p>Una vez que haya escrito algunas cosas divertidas sobre usted, agregue sus cambios y haga un nuevo commit.</p>
+<pre><code>git add -A
+git commit -m &quot;made readme more personal&quot;</code></pre>
+<p>Al igual que un repositorio local de Git, los repositorios remotos en GitHub pueden tener múltiples ramas. Llevemos esta confirmación a la rama <code>update-readme</code> en GitHub mediante un push:</p>
+<pre><code>git push origin update-readme</code></pre>
+<pre><code>## Counting objects: 3, done.
+## Delta compression using up to 4 threads.
+## Compressing objects: 100% (3/3), done.
+## Writing objects: 100% (3/3), 630 bytes | 0 bytes/s, done.
+## Total 3 (delta 0), reused 0 (delta 0)
+## To https://github.com/seankross/my-first-repo.git
+##  * [new branch]      update-readme -&gt; update-readme</code></pre>
+<p>Tenga en cuenta que necesitábamos especificar a qué control remoto estábamos subiendo puesto que GitHub no sabe previamente sobre la existencia de la rama <code>update-readme</code>. Cuando realiza un <code>git push</code>, solo se envían las confirmaciones en la rama actual al repositorio remoto. De esta forma puede crear branches locales a los que no pueden ser accedidos desde el repositorio remoto, a menos que los suba explícitamente en GitHub.</p>
+<p>Ahora volvamos a la página de GitHub de nuestro repositorio. En el lado izquierdo de la página debería ver un botón que dice “Branch: master”. Haga clic en ese botón y debería aparecer un pequeño menú desplegable.</p>
+<p>Haga clic en “update-readme” en el menú para ver los archivos en esa rama. ¡Usted debería ver que los archivos <code>README.md</code> son diferentes! Puede intercambiar entre ramas usando este menú.</p>
+<p>Ahora que ha enviado una rama actualizada a GitHub, vamos a abrir un pull request. Un pull request es como un ‘git merge’ guiado que es facilitado por GitHub. Para iniciar el pull request haga clic en el botón “New pull request” al lado del botón del branch.</p>
+<p>Hay algunos detalles importantes en esta página, así que revisémoslos. Primero bajo el encabezado “Open a pull request”, puede ver los nombres de dos ramas. El nombre de la rama después de “base:” muestra la rama en la que los cambios se están fusionando (en este caso, la rama <code>master</code>), y el nombre de la rama después de “compare” muestra la rama que tiene los cambios (en este caso, la rama <code>update-readme</code>).</p>
+<p>En los cuadros de texto a continuación puede escribir un título para su pull request (el título predeterminado en este caso es el nombre del último commit) y puede escribir comentarios sobre el pull request que puede formatear con Markdown. Si está colaborando con alguien más en un proyecto, es importante escribir buenos comentarios para que sus colaboradores sepan qué cambios ha realizado en la rama que está solicitando fusionar. Si se desplaza hacia abajo en la página puede ver una comparación línea por línea de los cambios en la rama “compare” comparada con la rama “base”. Cuando haya terminado de revisar estos cambios haga clic en el botón verde “Create pull request” para abrir el pull request.</p>
+<p>¡Felicitaciones por abrir su primer pull request! Echemos un vistazo a lo que está sucediendo en esta página. Debajo del título del pull request podemos ver tres pestañas llamadas <strong>Conversation</strong>, <strong>Commits</strong> y <strong>Files changed</strong>. En la pestaña <strong>Conversation</strong> podemos agregar comentarios al pull request que puede ser formateado con Markdown. La pestaña <strong>Commits</strong> enumera los commits que han sido hechos a la rama “compare” en estpull request. Finalmente la pestaña <strong>Files changed</strong> muestra la misma comparación línea por línea que vimos antes.</p>
+<p>Por lo general, cuando trabaja con colaboradores, hay una gran cantidad de discusión que ocurre después de abrir un pull request. Git confirma que son subidos a la rama “compare” (<code>update-readme</code> en este caso) del repositorio de GitHub se reflejará en un pull request incluso después de que la solicitud haya sido abierta. De esta manera, los cambios que se realizan como resultado de la discusión pueden ser fácilmente incorporados. Una vez que esté listo, regrese a la pestaña <strong>Conversation</strong> y haga clic en el botón verde “Merge pull request”, luego haga clic en el botón verde “Confirm merge” que aparece. Esto hará <code>git merge</code> en la rama de “compare” con la rama “base” en nuestro repositorio remoto. ¡Acaba de fusionar su primer pull request! Ahora haga clic cerca de la esquina superior izquierda de esta página en la pestaña <strong>&lt;&gt;Code</strong>, y debería ver que los cambios de la rama <code>update-readme</code> se han fusionado en <code>master</code>.</p>
+<p>Cuando trabaja en un repositorio remoto de GitHub con muchas otras personas, estos pull requests y los fusiones pueden suceder sin que usted se involucre en absoluto, si las confirmaciones afectan partes del código en las que no está trabajando. Aún así es importante mantener su repositorio local actualizado con los últimos cambios en el repositorio remoto. Volvamos a su terminal donde tiene el repositorio <code>my-first-repo</code> como el directorio de trabajo actual.</p>
+<p>Primero cambiemos a la rama <code>master</code>.</p>
+<pre><code>git checkout master</code></pre>
+<p>Ahora actualicemos nuestra rama principal local con los commits que se han fusionado en la rama principal en nuestro repositorio remoto. Podemos lograr esto con el comando <code>git pull</code>:</p>
+<pre><code>git pull</code></pre>
+<pre><code>## remote: Counting objects: 1, done.
+## remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+## Unpacking objects: 100% (1/1), done.
+## From https://github.com/seankross/my-first-repo
+##    2169912..b9217f6  master     -&gt; origin/master
+## Updating 2169912..b9217f6
+## Fast-forward
+##  README.md | 38 ++++++++++++++++++--------------------
+##  file1.txt |  0
+##  file2.txt |  0
+##  3 files changed, 18 insertions(+), 20 deletions(-)
+##  delete mode 100644 file1.txt
+##  delete mode 100644 file2.txt</code></pre>
+<p>Con <code>git pull</code> Git encuentra la rama <code>master</code> en el repositorio remoto <code>origin</code> y actualiza nuestro repositorio local con los nuevos commits. ¡Ya ha completado el ciclo de vida de un pull request completo! En la sección <strong>Forking</strong>, se vuelve a discutir cómo GitHub supercarga los pull requests para fomentar una mayor comunidad de codificación.</p>
+</div>
+<div id="pages" class="section level3">
+<h3>Pages</h3>
+<p>Por ahora vamos a tomar un pequeño desvío para discutir <a href="https://pages.github.com/">GitHub Pages</a>. GitHub Pages le permite crear y alojar un sitio web en GitHub usando solo Git y Markdown. Regrese a su página del repositorio <code>my-first-repo</code> en GitHub al hacer clic en la pestaña <em>Settings</em> en la parte superior. Desplácese hacia abajo en la página hasta que vea un cuadro que dice <strong>GitHub Pages</strong>. Entonces haga clic en el menú desplegable que dice <strong>None</strong>.</p>
+<p>Haga click en la rama <em>master</em> y luego haga click en <em>Save</em>. Ahora vaya al website [your-github-username].github.io/my-first-repo (en este caso la dirección es <a href="http://mamaciasq.github.io/my-first-repo">mamaciasq.github.io/my-first-repo</a>) y debería ver su propio website!</p>
+<p>¿¡Cuan genial es eso!? Si desea cambiar su nuevo sitio web, todo lo que necesita hacer es editar su <code>README.md</code> luego confirmar y subir los cambios! Sitios web como estos son excelentes para mostrar proyectos, proporcionar documentación de software, crear currículos en línea, o escribir un blog! Los sitios web de las páginas de GitHub pueden ser tan simples como pocos documentos Markdown, o si conoce alguna programación web, puede volverlos sitios web complejos. Para obtener más información acerca de las páginas de GitHub, puede echar un vistazo a la <a href="https://pages.github.com/">documentación aquí</a>.</p>
+</div>
+<div id="forking" class="section level3">
+<h3>Forking</h3>
+<p>Si está leyendo este gist, es bastante seguro decir que probablemente interactúa con software todos los días. El software alimenta su computadora, Internet, su teléfono y este gist. Considerando todo el software que usa, ¿alguna vez ha pensado en modificar ese software? Tal vez podría escribir algún código para agregar una nueva característica que cree que sería útil o para solucionar un error que haya notado. GitHub facilita la modificación del software de otras personas a través del proceso de <strong>forking</strong>. Bifurcar un repositorio de GitHub, copia el repositorio GitHub de otra persona en su cuenta de GitHub. A continuación, puede modificar esta copia de su software como quiera. Después de agregar algunas confirmaciones a su copia del repositorio, puede guardar los nuevos commits para usted, compartirlos con otros, o puede abrir un <strong>pull request</strong> para fusionar sus nuevos commits en el repositorio fuente original. Este repositorio fuente original (el repositorio que ha bifurcado) a menudo se denomina repositorio <em>upstream</em>.</p>
+<p>Tratemos de crear un repositorio ahora. Vaya <a href="https://github.com/seankross/the-unix-workbench" class="uri">https://github.com/seankross/the-unix-workbench</a> y haga clic en el botón <strong>Fork</strong> en la esquina superior derecha. GitHub luego le preguntará qué cuenta desea usar para bifurcar el repositorio. Si es un nuevo usuario de GitHub, solo tiene una cuenta, así que seleccione esa cuenta. Después de una breve pantalla de “por favor espere”, debería luego ver el repositorio bifurcado en la URL <a href="https://github.com/%5Byour-github-username%5D/the-unix-workbench" class="uri">https://github.com/[your-github-username]/the-unix-workbench</a>. Ahora ha bifurcado un repositorio! Para obtener una copia local del repositorio, necesitará usar el comando <code>git clone</code>.</p>
+<p>La clonación de un repositorio copia un repositorio de Git en su computadora mientras mantiene seguimiento del repositorio remoto del que se originó. Vamos a clonar su bifurcación del repositorio recién añadido ahora. En el lado derecho de la página del repositorio debería ver un botón verde que dice <strong>Clone or download</strong>.</p>
+<p>Haga clic en el pequeño icono del portapapeles que copiará la URL de Git. Ahora vuelva a la terminal y cambie su directorio de trabajo a su directorio de inicio.</p>
+<pre><code>cd
+pwd</code></pre>
+<pre><code>## /Users/sean</code></pre>
+<p>Ahora clonémos el repositorio. Escriba <code>git clone</code> en la terminal y luego pegue en la URL de Git lo que copiamos de GitHub:</p>
+<pre><code>git clone https://github.com/[your-github-username]/the-unix-workbench.git</code></pre>
+<pre><code>## Cloning into &#39;the-unix-workbench&#39;...
+## remote: Counting objects: 669, done.
+## remote: Compressing objects: 100% (7/7), done.
+## remote: Total 669 (delta 2), reused 8 (delta 2), pack-reused 660
+## Receiving objects: 100% (669/669), 4.00 MiB | 4.55 MiB/s, done.
+## Resolving deltas: 100% (510/510), done.</code></pre>
+<p>Ahora <code>cd</code> en su repositorio clonado.</p>
+<pre><code>cd the-unix-workbench</code></pre>
+<p>¡Acaba de completar con éxito su primer clon de Git! Como mencionamos antes, la clonación tiene la ventaja de hacer un seguimiento del repositorio remoto que debería estar asociado con el repositorio local. Probemos esto ingresando <code>git remote</code> con la etiqueta <code>-v</code>:</p>
+<pre><code>git remote -v</code></pre>
+<pre><code>## origin   https://github.com/[your-github-username]/the-unix-workbench.git (fetch)
+## origin   https://github.com/[your-github-username]/the-unix-workbench.git (push)</code></pre>
+<p>Como puede ver el nombre predeterminado del repositorio remoto después de clonar el repositorio es <code>origin</code>. Ahora que ha clonado su repositorio bifurcado, debe agregar un ¡commit! Un cambio que sugiero es agregar su nombre a <code>guestbook.md</code>. Vamos a hacer esto ahora:</p>
+<pre><code>echo &quot;- Sean Kross&quot; &gt;&gt; guestbook.md # ¡Obviamente agregue su nombre!
+cat guestbook.md</code></pre>
+<pre><code>## # Guest Book
+##
+## - Sean Kross</code></pre>
+<p>Ahora agreque, confirme, y suba sus cambios:</p>
+<pre><code>git add guestbook.md
+git commit -m &quot;added my name to guestbook.md&quot;
+git push</code></pre>
+<p>Ahora que ha agregado su nombre al libro de visitas, puede fusionar su cambio en la versión del libro de visitas abriendo un nuevo pull request como se describe en la sección anterior. Si su pull request se fusiona al libro de visitas en el repositorio, entonces habrá completado el ¡ciclo vital! de GitHub completo.</p>
+<p>El proceso de bifurcar un repositorio, hacer cambios y luego abrir un pull request es un flujo de trabajo muy potente para ver los cambios que desea hacer en el mundo del software. Muchos proyectos de software grandes e importantes tienen repositorios en GitHub incluyendo <a href="https://github.com/torvalds/linux">sistemas operativos</a>, <a href="https://github.com/golang/go">lenguajes de programación</a>, e incluso <a href="https://github.com/git/git">Git en sí mismo</a>! Si hay un cambio que quiera para ver en un repositorio público de GitHub, bifurcar ese repositorio y hacer el cambio es la opción!</p>
+</div>
+<div id="resumen-3" class="section level3">
+<h3>Resumen</h3>
+<ul>
+<li>Puede usar GitHub para crear y alojar repositorios remotos de Git.</li>
+<li>Un repositorio remoto de Git es un repositorio de Git que siempre está conectado a Internet.</li>
+<li>Liste los repositorios remotos con <code>git remote</code>.</li>
+<li>Agregue repositorios remotos con <code>git remote add [nombre-de-remoto] https://github.com/[username]/[repo-name].git</code></li>
+<li>Agregue commits a su repositorio remoto con <code>git push [nombre-de-remoto][nombre-de-rama]</code> o simplemente <code>git push</code> si ha configurado un control remoto y una bifurcación predeterminados.</li>
+<li>Para fusionar confirmaciones en un repositorio remoto en el uso de su repositorio local <code>git pull [nombre-de-control remoto] [nombre-de-rama]</code> o simplemente <code>git pull</code> si ha configurado un control remoto y un branch predeterminados.</li>
+<li>Un pull request le permite comparar interactivamente dos ramas diferentes antes de fusionarlas.</li>
+<li>¡GitHub Pages le permite alojar sitios web escritos en Markdown gratis!</li>
+<li>Bifurcar un repositorio le permite hacer cambios a una copia de un repositorio público. A continuación, puede abrir un pull request si cree que sus cambios deberían ¡fusionarse en el repositorio upstream!</li>
+</ul>
+</div>
+<div id="ejercicios-3" class="section level3">
+<h3>Ejercicios</h3>
+<ol style="list-style-type: decimal">
+<li>Cree un nuevo repositorio en GitHub. Clone su repositorio y agregue un <code>README.md</code> archivo. Suba este archivo a GitHub y cree un sitio web de GitHub Pages para este repositorio.</li>
+<li>Bifurque un repositorio existente (pruebe uno de los de <a href="https://github.com/seankross" class="uri">https://github.com/seankross</a>) e intente identificar algo valioso que podría contribuir. Haga cambios o adiciones a ese repositorio, luego abra un pull request.</li>
+<li>Lea las <a href="https://guides.github.com/">Guías de GitHub</a>.</li>
+</ol>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
