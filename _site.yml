@@ -2,8 +2,8 @@ name: "my-website"
 navbar:
   title: "Git y GitHub"
   left:
-    - text: "Home"
+    - text: "Primeros pasos"
       href: index.html
-    - text: "About"
+    - text: "Git y GitHub para paquetes de R"
       href: about.html
 output_dir: "docs"
