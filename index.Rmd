@@ -8,7 +8,7 @@ title: "Primeros pasos"
 
 Git es un programa de línea de comandos que le permite rastrear versiones de cualquier código o
 documento de texto plano que usted cree. Al igual que la función "Control de cambios" de
-un procesador de textos, Git realiza un seguimiento de quién hizo cambios particulares, el tiempo y
+un procesador de textos como Word, Git realiza un seguimiento de quién hizo cambios particulares, el tiempo y
 fecha de esos cambios y dónde se realizaron los cambios. Si un archivo crucial
 se borra por accidente, o si hace un cambio radical a su código y desea
 intentar descubrir dónde se realizó el cambio, puede usar Git para
