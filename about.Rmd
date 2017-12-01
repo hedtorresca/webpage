@@ -1,8 +1,6 @@
 ---
-title: "About This Website"
+title: "Git y GitHub para paquetes de R"
 ---
-
-# Git y GitHub {#git}
 
 Si se toma en serio el desarrollo de software, debe aprender sobre Git. Git es un _sistema de control de versiones_, una herramienta que rastrea los cambios en su código y comparte esos cambios con otros. Git es más útil cuando se combina con [GitHub](http://github.com), un sitio web que le permite compartir su código con el mundo, solicitar mejoras a través de pull requests (solicitudes de extracción) y seguir issues (problemas). Git + GitHub es el sistema de control de versiones más popular para desarrolladores de paquetes de R (lo atestiguan los miles de paquetes de R alojados en GitHub).
 
