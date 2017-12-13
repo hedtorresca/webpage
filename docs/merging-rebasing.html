@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Merging vs. Rebasing</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Git y GitHub</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Primeros pasos</a>
+</li>
+<li>
+  <a href="about.html">Git y GitHub para paquetes de R</a>
+</li>
+<li>
+  <a href="merging-rebasing.html">Merging vs. Rebasing</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Merging vs. Rebasing</h1>
+
+</div>
+
+
+<div id="vision-conceptual" class="section level2">
+<h2>Visión conceptual</h2>
+<p>Lo primero que debe entenderse sobre <code>git rebase</code> es que resuelve el mismo problema que <code>git merge</code>. Ambos comandos están diseñados para integrar cambios de un branch a otro branch; solo lo hacen de maneras muy diferentes.</p>
+<p>Considere lo que sucede cuando comienza a trabajar en una nueva característica en un branch dedicado para tal fin, luego otro miembro del equipo actualiza el branch <code>master</code> con nuevos commits. Esto da como resultado una historia bifurcada, que debería ser familiar para cualquiera que haya usado Git como herramienta de colaboración.</p>
+<p><img src="images/01.svg" width="100%" /></p>
+<p>Ahora, digamos que los nuevos commits en el branch <code>master</code> son relevantes para la función en la que se está trabajando en el otro branch. Para incorporar los nuevos commits en su branch de <code>características</code>, tiene dos opciones: <code>merge</code> o <code>rebase</code>.</p>
+<div id="opcion-merge" class="section level3">
+<h3>Opción <code>merge</code></h3>
+<p>La opción más fácil es fusionar el branch <code>master</code> en el branch <code>características</code> usando:</p>
+<pre class="bash"><code>git checkout feature
+git merge master</code></pre>
+<p>O condensarlo en una línea:</p>
+<pre class="bash"><code>git merge master feature</code></pre>
+<p>Esto crea un nueva “merge commit” en el branch <code>características</code> que vincula las historias de ambos branches, dándole una estructura de bifurcación que se ve así:</p>
+<p><img src="images/02.svg" width="100%" /></p>
+<p>La fusión es agradable porque es una operación no destructiva. Las ramas existentes no se modifican de ninguna manera. Esto evita todas las trampas potenciales del rebasamiento (discutidas a continuación).</p>
+<p>Por otro lado, esto también significa que la rama <code>características</code> tendrá un commit de fusión extraño cada vez que necesite incorporar cambios ascendentes. Si el <code>master</code> es muy activo, esto puede contaminar un poco la historia de su rama <code>características</code>. Si bien es posible mitigar este problema con las opciones avanzadas de <code>git log</code>, puede dificultar que otros desarrolladores comprendan el historial del proyecto.</p>
+</div>
+<div id="opcion-rebase" class="section level3">
+<h3>Opción <code>rebase</code></h3>
+<p>Como alternativa a la fusión, puede volver a establecer la base de la rama <code>características</code> en la rama <code>master</code> mediante los siguientes comandos:</p>
+<pre class="bash"><code>git checkout feature
+git rebase master</code></pre>
+<p>Esto mueve toda la rama <code>características</code> para que comience al inicio de la rama <code>master</code>, incorporando efectivamente todos los nuevos commits en el <code>master</code>. Pero, en lugar de usar un merge commit, rebasing vuelve a escribir el historial del proyecto creando commits nuevos para cada commit en la rama <code>master</code>.</p>
+<p><img src="images/03.svg" width="100%" /></p>
+<p>El mayor beneficio de rebase es que obtiene un historial de proyectos mucho más limpio. Primero, elimina los innecesarios merge commits requeridos por <code>git merge</code>. En segundo lugar, como puede ver en el diagrama anterior, rebase también da como resultado un historial de proyecto perfectamente lineal: puede seguir la punta de <code>característica</code> hasta el comienzo del proyecto sin ninguna bifurcación. Esto facilita navegar por su proyecto con comandos como <code>git log</code>, <code>git bisect</code> y `gitk.</p>
+<p>Pero, hay dos compensaciones para este prístino historial de commits: seguridad y trazabilidad. Si no sigue <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing">la regla de oro de rebase</a>, volver a escribir el historial del proyecto puede ser potencialmente catastrófico para su flujo de trabajo de colaboración. Y, lo que es menos importante, el rebasamiento pierde el contexto proporcionado por una merge commit –no se puede ver cuando se incorporaron los cambios de flujo ascendente en `característica.</p>
+</div>
+<div id="rebase-interactivo" class="section level3">
+<h3>Rebase interactivo</h3>
+<p>El rebasamiento interactivo le da la oportunidad de alterar los commits a medida que se mueven al nuevo branch. Esto es incluso más poderoso que un rebase automático, ya que ofrece un control completo sobre el historial de commits del branch. Normalmente, esto se usa para limpiar un historial desordenado antes de fusionar el branch <code>características</code> en <code>master</code>.</p>
+<p>Para comenzar una sesión de rebase interactiva, adhiera la opción <code>i</code> al comando <code>git rebase</code>:</p>
+<pre class="bash"><code>git checkout feature
+git rebase -i master</code></pre>
+<p>Esto abrirá un editor de texto que enumera todos los commits que están a punto de ser movidas:</p>
+<pre class="bash"><code>pick 33d5b7a Message for commit #1
+pick 9480b3d Message for commit #2
+pick 5c67e61 Message for commit #3</code></pre>
+<p>Esta lista define exactamente cómo se verá el branch después de que se realice el rebase. Al cambiar el comando de selección y/o reordenar las entradas, puede hacer que el historial del branch tenga el aspecto que desee. Por ejemplo, si el segundo commit corrige un pequeño problema en el primer commit, puede condensarlos en un solo commit con el comando <code>fixup</code>:</p>
+<pre class="bash"><code>pick 33d5b7a Message for commit #1
+fixup 9480b3d Message for commit #2
+pick 5c67e61 Message for commit #3`</code></pre>
+<p>Cuando guarda y cierra el archivo, Git realizará el rebase de acuerdo con sus instrucciones, lo que da como resultado el historial del proyecto que se ve así:</p>
+<p><img src="images/04.svg" width="100%" /></p>
+<p>La eliminación de commits insignificantes como este hace que la historia de <code>característica</code> sea mucho más fácil de entender. Esto es algo que <code>git merge</code> simplemente no puede hacer.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -6,4 +6,6 @@ navbar:
       href: index.html
     - text: "Git y GitHub para paquetes de R"
       href: about.html
+    - text: "Merging vs. Rebasing"
+      href: merging-rebasing.html
 output_dir: "docs"
